@@ -1,0 +1,16 @@
+[env] device=cpu | torch=1.12.1 | mkldnn=False | threads=18 | oneDNN ISA=AVX2
+[model] load_state_dict -> <All keys matched successfully>
+[data] 训练 64 张 / 验证 64 张, batch=4, input=640
+[dry-run] 跳过 QatProcessor，直接训练原始浮点模型
+[warn] 取量化参数组失败: AttributeError("'FaceDetector' object has no attribute 'quantizer_parameters'")，退化为单一参数组
+[qat] 权重参数 174 组张量 / 量化参数 0 组张量,  lr=1.00e-06 quant_lr=1.00e-05
+  [skip] step 0 backward 失败: could not create a primitive descriptor iterator
+  [skip] step 1 backward 失败: could not create a primitive descriptor iterator
+  [skip] step 2 backward 失败: could not create a primitive descriptor iterator
+[epoch 1/1] {'epoch': 1, 'train_loss': 0.0, 'train_obj': 0.0, 'val_loss': 2.6777, 'val_obj': 0.009, 'val_batches': 4, 'skip_batches': 16, 'sec': 4.3}
+
+[qat] QAT 模型 vs 浮点模型（3 个 batch）
+      rel-L2 最大 = 0.035956     cos-sim 最低 = 0.999353
+      参考：PTQ 时 rel-L2=0.663 / cos=0.785；
+           QAT 若有效应到 rel-L2<0.05 / cos>0.99
+[done] 输出目录: qat_dry

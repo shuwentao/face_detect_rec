@@ -1,0 +1,8 @@
+[env] cuda  mobilefacenet(w=1.0, 512-d)
+[eval] lfw        acc=98.383%  thr=0.286  n_pair=6000  (参考量级 99.7%)
+[eval] cfp_fp     acc=90.371%  thr=0.196  n_pair=7000  (参考量级 96.5%)
+[eval] cfp_ff     acc=98.171%  thr=0.282  n_pair=7000  (参考量级 99.5%)
+[eval] agedb_30   acc=87.017%  thr=0.206  n_pair=6000  (参考量级 97.5%)
+[eval] calfw      acc=91.233%  thr=0.239  n_pair=6000  (参考量级 95.8%)
+[eval] cplfw      acc=85.533%  thr=0.209  n_pair=6000  (参考量级 92.0%)
+[eval] 平均 = 91.785%

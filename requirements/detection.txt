@@ -1,0 +1,4 @@
+tensorflow>=2.10
+numpy>=1.21
+# 部署阶段（在 Vitis-AI 3.0 docker 内，无需本机装）：
+#   vitis-ai-tensorflow2 环境自带 vai-q-tensorflow2 / vitis_quantize

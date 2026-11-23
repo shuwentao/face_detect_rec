@@ -1,0 +1,14 @@
+[UNILOG][INFO] Compile mode: dpu
+[UNILOG][INFO] Debug mode: null
+[UNILOG][INFO] Target architecture: DPUCZDX8G_ISA1_B4096
+[UNILOG][INFO] Graph name: FaceDetector, with op num: 663
+[UNILOG][INFO] Begin to compile...
+[0;33m[UNILOG][WARNING] xir::Op{name = FaceDetector__FaceDetector_TVBackbone_backbone__InvertedResidual_features__InvertedResidual_1__Sequential_block__SqueezeExcitation_1__AdaptiveAvgPool2d_avgpool__input_15_fix, type = pool-fix} has been assigned to CPU: [Pool's kernel (160, 160) is too large to be loaded into fmap buffer. "⌈kernel_h / bank_num(=8)⌉ * kernel_w * ⌈channel_parallel(=16) / bank_width(=16)⌉ is supposed to be less equal than 2048].
+[m[UNILOG][INFO] Total device subgraph number 7, DPU subgraph number 2
+[UNILOG][INFO] Compile done.
+[UNILOG][INFO] The meta json is saved to "/workspace/mymodel/gate320/compiled_640/meta.json"
+[UNILOG][INFO] The compiled xmodel is saved to "/workspace/mymodel/gate320/compiled_640/gate640.xmodel"
+[UNILOG][INFO] The compiled xmodel's md5sum is 2efa5d7a14f11a3355ece99525b51ca8, and has been saved to "/workspace/mymodel/gate320/compiled_640/md5sum.txt"
+**************************************************
+* VITIS_AI Compilation - Xilinx Inc.
+**************************************************

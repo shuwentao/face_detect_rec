@@ -1,0 +1,13 @@
+
+[0;32m[VAIQ_NOTE]: Loading NNDCT kernels...[0m
+[model] best.pt (float)
+GT 样本 600，漏检/不可算 0
+IoU>=0.0  n= 600  NME均值 0.0749  p50 0.0501  p90 0.1580
+IoU>=0.3  n= 599  NME均值 0.0745  p50 0.0500  p90 0.1569
+IoU>=0.5  n= 582  NME均值 0.0727  p50 0.0495  p90 0.1550
+IoU>=0.7  n= 437  NME均值 0.0539  p50 0.0440  p90 0.0892
+IoU>=0.9  n= 218  NME均值 0.0399  p50 0.0365  p90 0.0601
+匹配IoU: 均值 0.803  p10 0.584  p50 0.857
+IoU>=0.5 占比: 97.0%
+/workspace/mymodel/gate320/common/models/detector.py:113: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the 'trunc' function NOT 'floor'). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode='trunc'), or for actual floor division, use torch.div(a, b, rounding_mode='floor').
+  ys, xs = idx // w, idx % w

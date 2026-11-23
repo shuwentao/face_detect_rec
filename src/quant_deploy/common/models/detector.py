@@ -1,0 +1,149 @@
+"""统一检测头：FPN-lite + 共享 head（cls 1 + box 4 + landmark 10）。
+
+4 个算法共用该 head，输出与 YuNet 一致：每点 15 通道
+  [0]      objectness
+  [1:5]    (left, top, right, bottom) * stride，相对该点感受野中心
+  [5:15]   5 个关键点的 (dx, dy) * stride，同样相对中心
+"""
+import torch
+import torch.nn as nn
+from torchvision.ops import nms
+
+STRIDES = (8, 16, 32)
+# 每个尺度负责的框尺寸区间(按边长，输入 640)：与 dataset.build_targets 保持一致
+SCALE_RANGES = ((0, 32), (32, 96), (96, 1e9))
+NUM_LM = 5
+
+
+class FPNLite(nn.Module):
+    def __init__(self, in_channels, out_ch=64):
+        super().__init__()
+        c3, c4, c5 = in_channels
+        self.lat5 = nn.Conv2d(c5, out_ch, 1)
+        self.lat4 = nn.Conv2d(c4, out_ch, 1)
+        self.lat3 = nn.Conv2d(c3, out_ch, 1)
+        self.smooth5 = nn.Conv2d(out_ch, out_ch, 3, padding=1)
+        self.smooth4 = nn.Conv2d(out_ch, out_ch, 3, padding=1)
+        self.smooth3 = nn.Conv2d(out_ch, out_ch, 3, padding=1)
+        self.relu = nn.ReLU(inplace=True)
+
+    def forward(self, feats):
+        c3, c4, c5 = feats
+        p5 = self.lat5(c5)
+        p4 = self.lat4(c4) + nn.functional.interpolate(
+            p5, size=c4.shape[-2:], mode="nearest")
+        p3 = self.lat3(c3) + nn.functional.interpolate(
+            p4, size=c3.shape[-2:], mode="nearest")
+        return (self.relu(self.smooth3(p3)), self.relu(self.smooth4(p4)),
+                self.relu(self.smooth5(p5)))
+
+
+class DetHead(nn.Module):
+    def __init__(self, in_ch, hidden=64, num_lm=NUM_LM):
+        super().__init__()
+        self.stem = nn.Sequential(nn.Conv2d(in_ch, hidden, 3, padding=1),
+                                  nn.ReLU(inplace=True))
+        self.cls = nn.Conv2d(hidden, 1, 1)
+        self.box = nn.Conv2d(hidden, 4, 1)
+        self.lm = nn.Conv2d(hidden, num_lm * 2, 1)
+        nn.init.normal_(self.cls.weight, std=0.01)
+        nn.init.constant_(self.cls.bias, -4.0)   # 初始 obj 概率低，训练更稳
+
+    def forward(self, x):
+        f = self.stem(x)
+        # det(cls+box) 与 lm 分开返回：二者各走一个 DeQuantStub，才能拿到
+        # 各自独立的量化刻度。原先 concat 成 15 通道只能共用一把尺子。
+        return torch.cat([self.cls(f), self.box(f)], dim=1), self.lm(f)
+
+
+class FaceDetector(nn.Module):
+    def __init__(self, backbone, feat_ch=64, hidden=64):
+        super().__init__()
+        # Vitis QAT 要求量化边界显式写在模型里。必须用 pytorch_nndct 的 stub
+        # （内部是 QuantStubF，能被 Vitis 追踪到），torch 原生的不行。
+        # 未经 QatProcessor 处理时二者都是恒等映射，不影响浮点训练/推理。
+        try:
+            from pytorch_nndct.nn import QuantStub as _QS, DeQuantStub as _DQS
+        except ImportError:                    # 没有 Vitis 环境下退回 torch 原生
+            from torch.quantization import QuantStub as _QS, DeQuantStub as _DQS
+        self.quant = _QS()
+        self.dequant = _DQS()        # 保留字段以兼容旧 ckpt/脚本，不参与 forward
+        self.dequant_det = _DQS()    # det 分支独立刻度
+        self.dequant_lm = _DQS()     # lm 分支独立刻度
+        self.backbone = backbone
+        self.fpn = FPNLite(backbone.out_channels, feat_ch)
+        self.heads = nn.ModuleList([DetHead(feat_ch, hidden) for _ in STRIDES])
+        self.strides = STRIDES
+
+    def forward(self, x):
+        x = self.quant(x)
+        feats = self.backbone(x)
+        feats = self.fpn(feats)
+        outs = []
+        for head, f in zip(self.heads, feats):
+            det, lm = head(f)                    # (B,5,H,W) / (B,10,H,W)
+            outs.append(torch.cat([self.dequant_det(det),
+                                   self.dequant_lm(lm)], dim=1))
+        return outs
+
+
+def build_detector(name, pretrained=True, width=1.0, feat_ch=64, hidden=64):
+    from .backbones import build_backbone
+    return FaceDetector(build_backbone(name, pretrained, width), feat_ch, hidden)
+
+
+# --------------------------------------------------------------------------- #
+# 解码 / NMS
+# --------------------------------------------------------------------------- #
+def decode_preds(preds, strides=STRIDES, conf_thr=0.05, nms_thr=0.45,
+                 topk=3000, max_det=500):
+    """preds: list[(B,15,H,W)] -> 每张图 (boxes Nx4, scores N, lms Nx5x2)。"""
+    device = preds[0].device
+    dtype = preds[0].dtype
+    b = preds[0].shape[0]
+    all_b, all_s, all_l = [[] for _ in range(b)], [[] for _ in range(b)], \
+                          [[] for _ in range(b)]
+    for p, s in zip(preds, strides):
+        _, _, h, w = p.shape
+        gy, gx = torch.meshgrid(torch.arange(h, device=device),
+                                torch.arange(w, device=device), indexing="ij")
+        cx = (gx + 0.5) * s
+        cy = (gy + 0.5) * s
+        cls = p[:, 0].sigmoid()
+        l, t, r, bo = p[:, 1], p[:, 2], p[:, 3], p[:, 4]
+        lm = p[:, 5:15]
+        for i in range(b):
+            c = cls[i]
+            score, idx = c.reshape(-1).topk(min(topk, c.numel()))
+            keep = score > conf_thr
+            score, idx = score[keep], idx[keep]
+            if idx.numel() == 0:
+                continue
+            ys, xs = idx // w, idx % w
+            px = cx[ys, xs].to(dtype)
+            py = cy[ys, xs].to(dtype)
+            x1 = px - l[i].reshape(-1)[idx] * s
+            y1 = py - t[i].reshape(-1)[idx] * s
+            x2 = px + r[i].reshape(-1)[idx] * s
+            y2 = py + bo[i].reshape(-1)[idx] * s
+            boxes = torch.stack([x1, y1, x2, y2], dim=-1)
+            d = lm[i].reshape(10, -1)[:, idx].t().reshape(-1, NUM_LM, 2)
+            pts = torch.stack([px, py], dim=-1).unsqueeze(1) + d * s
+            all_b[i].append(boxes)
+            all_s[i].append(score)
+            all_l[i].append(pts)
+
+    out = []
+    for i in range(b):
+        if not all_b[i]:
+            z = preds[0].new_zeros((0, 4))
+            out.append((z, preds[0].new_zeros((0,)),
+                        preds[0].new_zeros((0, NUM_LM, 2))))
+            continue
+        boxes = torch.cat(all_b[i])
+        scores = torch.cat(all_s[i])
+        lms = torch.cat(all_l[i])
+        keep = nms(boxes, scores, nms_thr)
+        keep = keep[:max_det]
+        out.append((boxes[keep], scores[keep], lms[keep]))
+    return out

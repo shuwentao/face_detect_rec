@@ -1,0 +1,9 @@
+{
+    "lib": "libvart-dpu-runner.so",
+    "filename": "gate640.xmodel",
+    "kernel": [
+        "subgraph_FaceDetector__FaceDetector_DetHead_heads__ModuleList_0__12952",
+        "subgraph_FaceDetector__FaceDetector_TVBackbone_backbone__Conv2dNormActivation_features__Conv2dNormActivation_0__Conv2d_0__input_3"
+    ],
+    "target": "DPUCZDX8G_ISA1_B4096"
+}

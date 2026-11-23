@@ -1,0 +1,8 @@
+{
+    "lib": "libvart-dpu-runner.so",
+    "filename": "face_rec.xmodel",
+    "kernel": [
+        "subgraph_MobileFaceNetLite__MobileFaceNetLite_AdaptiveAvgPool2d_gap__2751_inserted_fix_0"
+    ],
+    "target": "DPUCZDX8G_ISA1_B4096"
+}

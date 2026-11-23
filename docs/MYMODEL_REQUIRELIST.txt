@@ -1,0 +1,35 @@
+mymodel 恢复清单 (requirelist)
+================================
+
+本目录含三个人脸相关子项目，均依赖 Vitis-AI 3.0 框架（docker 环境），
+NOT 本地 pip 环境，故无全量 pip freeze；依赖见各子项目自己的 requirements.txt。
+
+----------------------------------------------------------------
+1. face_detector_yunet/  —— YuNet 人脸检测（float）
+   依赖: tensorflow>=2.10, numpy>=1.21
+   部署: 在 Vitis-AI 3.0 docker 内用 vitis-ai-tensorflow2 环境的
+         vai-q-tensorflow2 / vitis_quantize 做量化
+   关键文件: face_detection_yunet_2023mar.onnx
+             （即 face_rec 的 verify_align.py 所引用的检测模型）
+
+2. face_trainer/  —— 人脸特征训练（glint360k 数据）
+   依赖: tensorflow>=2.10, numpy>=1.21
+
+3. gate320/  —— 人脸检测 DPU 量化部署（320 分辨率，INT8）
+   依赖: Vitis-AI 3.0 + vai-q-tensorflow2；板端需 Vitis AI DPU 运行时
+   关键文件: 各子目录下的 FaceDetector_int.onnx（量化后模型）
+   说明: qat*=量化感知训练, qr*=训练后量化(PTQ), ft*=微调, calib*=校准日志
+
+----------------------------------------------------------------
+外部依赖（不在本包内，恢复时需另行准备）:
+   - Vitis-AI 3.0 仓库（含 dpu/ examples/ src/ 等）：提供量化工具链，
+     需 git clone 官方仓库（本包不含其 .git）
+   - 板子 DPU 运行时：部署 gate320 的 *int.onnx 时需要
+   - 若与本仓库外的 face_rec 拼接：face_rec 的 pip 环境见其独立的
+     requirements.txt（纯 Python）；拼接时注意
+     face_rec/verify_align.py 引用 ../face_detector_yunet/face_detection_yunet_2023mar.onnx
+
+----------------------------------------------------------------
+恢复方式:
+   tar -xzf mymodel_20261110.tar.gz -C /your/path
+   # 得到 /your/path/mymodel/{face_detector_yunet,face_trainer,gate320}/...

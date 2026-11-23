@@ -1,0 +1,15 @@
+
+[0;32m[VAIQ_NOTE]: Loading NNDCT kernels...[0m
+/workspace/mymodel/gate320/common/models/detector.py:122: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the 'trunc' function NOT 'floor'). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode='trunc'), or for actual floor division, use torch.div(a, b, rounding_mode='floor').
+  ys, xs = idx // w, idx % w
+[warn] load_kernels 失败: TypeError("'module' object is not callable")
+[model] qr_ft_F/FaceDetector_int.pt (jit)
+==========================================================
+图片数        : 600
+mAP@0.5       : 0.5090
+mAP@0.5:0.95  : 0.2473
+NME(框归一)    : 0.1669   (样本 600)  <- 与旧结果同一口径
+NME(眼距归一)  : 0.6182
+失效率(NME>.1) : 63.2%
+平均检出框数   : 391.8
+==========================================================

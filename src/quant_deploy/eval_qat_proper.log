@@ -1,0 +1,13 @@
+
+[0;32m[VAIQ_NOTE]: Loading NNDCT kernels...[0m
+[warn] load_kernels 失败: TypeError("'module' object is not callable")
+Traceback (most recent call last):
+  File "eval_dump.py", line 206, in <module>
+    main()
+  File "eval_dump.py", line 101, in main
+    model, kind = load_model(args, dev)
+  File "eval_dump.py", line 57, in load_model
+    m = torch.jit.load(args.jit, map_location=dev)
+  File "/opt/vitis_ai/conda/envs/vitis-ai-pytorch/lib/python3.7/site-packages/torch/jit/_serialization.py", line 152, in load
+    raise ValueError("The provided filename {} does not exist".format(f))  # type: ignore[str-bytes-safe]
+ValueError: The provided filename qat320e/qtest_proper/FaceDetector_int.pt does not exist

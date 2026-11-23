@@ -1,0 +1,21 @@
+
+[0;32m[VAIQ_NOTE]: Loading NNDCT kernels...[0m
+[env] device = cpu | torch = 1.12.1 | mkldnn = True
+[model] load_state_dict -> <All keys matched successfully>
+[data] 200 张校准图 -> 200 个 batch
+
+[0;32m[VAIQ_NOTE]: OS and CPU information:
+               system --- Linux
+                 node --- tiny-desktop
+              release --- 6.8.0-138-generic
+              version --- #138~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Aug  7 13:43:15 UTC 
+              machine --- x86_64
+            processor --- x86_64[0m
+
+[0;32m[VAIQ_NOTE]: Tools version information:
+                  GCC --- GCC 9.4.0
+               python --- 3.7.12
+              pytorch --- 1.12.1
+        vai_q_pytorch --- 3.0.0+a44284e+torch1.12.1[0m
+
+[0;31m[VAIQ_ERROR][QUANTIZER_TORCH_QUANT_CONFIG]: Only support per_tensor quantization in DPU device[0m

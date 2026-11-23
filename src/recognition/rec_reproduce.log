@@ -1,0 +1,549 @@
+[prep] 从 train.rec 重建 30k / 136k 分片...
+[load] 索引 2,000,000 条
+[pick] 选中 268,674 张 / 30,727 个身份  (每类 <= 10)
+  [shard] 100,100/268,674  已用 0.1 min
+  [shard] 200,067/268,674  已用 0.2 min
+[done] 写出 268,674 张 / 68 个分片 / 30,727 类 -> shards_30k  (12s)
+[load] 索引 8,114,553 条
+[pick] 选中 1,182,654 张 / 136,418 个身份  (每类 <= 10)
+  [shard] 100,100/1,182,654  已用 0.1 min
+  [shard] 200,067/1,182,654  已用 0.2 min
+  [shard] 500,030/1,182,654  已用 0.5 min
+  [shard] 700,098/1,182,654  已用 0.8 min
+  [shard] 800,081/1,182,654  已用 0.9 min
+  [shard] 900,067/1,182,654  已用 1.0 min
+  [shard] 1,000,248/1,182,654  已用 1.1 min
+  [shard] 1,100,011/1,182,654  已用 1.3 min
+[done] 写出 1,182,654 张 / 296 个分片 / 136,418 类 -> shards_136k  (82s)
+[prep] 分片就绪: shards_30k(3万身份) / shards_136k(13.6万身份)
+[30k] GhostFaceNet 在 30k 子集从零训...
+[env] device=cuda  torch=2.14.1+cu130  amp=True
+[data] 268,674 张 / 30,727 类  每 epoch ≈ 2,099 step (bs=128)
+[model] ghostfacenet(w=1.0) 骨干 1.67M 参数, 分类头 15.73M 参数, 输出 512-d
+  [diag] |g_bb|=nan |g_head|=0.000e+00 feat_norm=8.76 scale=65536
+[ep0 0/2099] loss=39.7828 acc=0.0000 lr=4.76e-06 18 img/s eta=242.4min
+  [diag] |g_bb|=1.300e+00 |g_head|=4.828e+00 feat_norm=36.36 scale=4096
+[ep0 1500/2099] loss=38.0064 acc=0.0000 lr=7.15e-03 1419 img/s eta=0.9min
+[epoch 0] loss=37.9640 acc=0.0000 用时 3.1 min
+[eval] lfw        acc=57.050%  thr=0.993  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.5705 @thr=0.993
+  [diag] |g_bb|=1.069e+00 |g_head|=4.884e+00 feat_norm=42.64 scale=4096
+[ep1 0/2099] loss=38.0982 acc=0.0000 lr=1.00e-02 328 img/s eta=13.7min
+  [diag] |g_bb|=1.373e+00 |g_head|=4.808e+00 feat_norm=41.35 scale=8192
+[ep1 1500/2099] loss=37.8106 acc=0.0000 lr=9.97e-03 1388 img/s eta=0.9min
+[epoch 1] loss=37.6166 acc=0.0000 用时 3.3 min
+[eval] lfw        acc=73.167%  thr=0.676  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.7317 @thr=0.676
+  [diag] |g_bb|=1.478e+00 |g_head|=4.777e+00 feat_norm=41.49 scale=16384
+[ep2 0/2099] loss=35.5168 acc=0.0000 lr=9.93e-03 316 img/s eta=14.2min
+  [diag] |g_bb|=2.026e+00 |g_head|=4.571e+00 feat_norm=41.44 scale=16384
+[ep2 1500/2099] loss=36.0786 acc=0.0000 lr=9.80e-03 1388 img/s eta=0.9min
+[epoch 2] loss=35.8473 acc=0.0000 用时 3.2 min
+[eval] lfw        acc=85.100%  thr=0.502  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.8510 @thr=0.502
+  [diag] |g_bb|=1.960e+00 |g_head|=4.600e+00 feat_norm=43.21 scale=32768
+[ep3 0/2099] loss=36.1814 acc=0.0000 lr=9.73e-03 264 img/s eta=17.0min
+  [diag] |g_bb|=2.357e+00 |g_head|=4.410e+00 feat_norm=41.57 scale=32768
+[ep3 1500/2099] loss=34.3714 acc=0.0000 lr=9.50e-03 1389 img/s eta=0.9min
+[epoch 3] loss=34.0973 acc=0.0000 用时 3.2 min
+[eval] lfw        acc=87.917%  thr=0.390  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.8792 @thr=0.390
+  [diag] |g_bb|=2.444e+00 |g_head|=4.362e+00 feat_norm=41.81 scale=65536
+[ep4 0/2099] loss=33.6351 acc=0.0000 lr=9.40e-03 287 img/s eta=15.6min
+  [diag] |g_bb|=2.383e+00 |g_head|=4.396e+00 feat_norm=42.13 scale=65536
+[ep4 1500/2099] loss=32.7908 acc=0.0000 lr=9.09e-03 1401 img/s eta=0.9min
+[epoch 4] loss=32.5969 acc=0.0000 用时 3.2 min
+[eval] lfw        acc=89.517%  thr=0.363  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.8952 @thr=0.363
+  [diag] |g_bb|=2.488e+00 |g_head|=4.337e+00 feat_norm=41.27 scale=65536
+[ep5 0/2099] loss=29.5369 acc=0.0000 lr=8.95e-03 373 img/s eta=12.0min
+  [diag] |g_bb|=2.822e+00 |g_head|=4.128e+00 feat_norm=41.92 scale=65536
+[ep5 1500/2099] loss=31.3796 acc=0.0000 lr=8.56e-03 1385 img/s eta=0.9min
+[epoch 5] loss=31.0438 acc=0.0000 用时 3.2 min
+[eval] lfw        acc=90.933%  thr=0.345  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.9093 @thr=0.345
+  [diag] |g_bb|=3.123e+00 |g_head|=3.905e+00 feat_norm=41.15 scale=65536
+[ep6 0/2099] loss=31.1670 acc=0.0000 lr=8.39e-03 279 img/s eta=16.0min
+  [diag] |g_bb|=3.027e+00 |g_head|=3.980e+00 feat_norm=40.50 scale=32768
+[ep6 1500/2099] loss=29.8412 acc=0.0000 lr=7.93e-03 1431 img/s eta=0.9min
+[epoch 6] loss=29.8438 acc=0.0000 用时 3.0 min
+[eval] lfw        acc=92.267%  thr=0.360  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.9227 @thr=0.360
+  [diag] |g_bb|=2.889e+00 |g_head|=4.081e+00 feat_norm=40.47 scale=32768
+[ep7 0/2099] loss=26.3771 acc=0.0000 lr=7.73e-03 288 img/s eta=15.5min
+  [diag] |g_bb|=3.184e+00 |g_head|=3.856e+00 feat_norm=40.20 scale=32768
+[ep7 1500/2099] loss=28.8052 acc=0.0000 lr=7.22e-03 1589 img/s eta=0.8min
+[epoch 7] loss=28.6991 acc=0.0000 用时 2.9 min
+[eval] lfw        acc=92.333%  thr=0.332  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.9233 @thr=0.332
+  [diag] |g_bb|=3.207e+00 |g_head|=3.836e+00 feat_norm=40.13 scale=32768
+[ep8 0/2099] loss=28.8196 acc=0.0000 lr=7.01e-03 279 img/s eta=16.1min
+  [diag] |g_bb|=3.332e+00 |g_head|=3.728e+00 feat_norm=39.25 scale=32768
+[ep8 1500/2099] loss=27.4255 acc=0.0000 lr=6.45e-03 1390 img/s eta=0.9min
+[epoch 8] loss=27.2962 acc=0.0000 用时 3.2 min
+[eval] lfw        acc=93.217%  thr=0.312  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.9322 @thr=0.312
+  [diag] |g_bb|=3.479e+00 |g_head|=3.591e+00 feat_norm=39.74 scale=32768
+[ep9 0/2099] loss=28.2502 acc=0.0000 lr=6.23e-03 302 img/s eta=14.8min
+  [diag] |g_bb|=3.559e+00 |g_head|=3.512e+00 feat_norm=39.12 scale=32768
+[ep9 1500/2099] loss=26.2828 acc=0.0000 lr=5.65e-03 1409 img/s eta=0.9min
+[epoch 9] loss=26.3405 acc=0.0000 用时 3.2 min
+[eval] lfw        acc=93.517%  thr=0.316  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.9352 @thr=0.316
+  [diag] |g_bb|=3.521e+00 |g_head|=3.550e+00 feat_norm=38.30 scale=32768
+[ep10 0/2099] loss=29.4395 acc=0.0000 lr=5.41e-03 313 img/s eta=14.3min
+  [diag] |g_bb|=3.658e+00 |g_head|=3.408e+00 feat_norm=38.05 scale=32768
+[ep10 1500/2099] loss=25.7290 acc=0.0000 lr=4.82e-03 1407 img/s eta=0.9min
+[epoch 10] loss=25.7067 acc=0.0000 用时 3.2 min
+[eval] lfw        acc=93.450%  thr=0.302  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.9345 @thr=0.302
+  [diag] |g_bb|=3.689e+00 |g_head|=3.376e+00 feat_norm=37.69 scale=32768
+[ep11 0/2099] loss=24.6897 acc=0.0000 lr=4.59e-03 305 img/s eta=14.7min
+  [diag] |g_bb|=3.767e+00 |g_head|=3.287e+00 feat_norm=37.06 scale=32768
+[ep11 1500/2099] loss=24.9137 acc=0.0000 lr=4.00e-03 1398 img/s eta=0.9min
+[epoch 11] loss=24.8848 acc=0.0000 用时 3.2 min
+[eval] lfw        acc=94.150%  thr=0.306  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.9415 @thr=0.306
+  [diag] |g_bb|=3.724e+00 |g_head|=3.336e+00 feat_norm=37.07 scale=32768
+[ep12 0/2099] loss=22.2447 acc=0.0000 lr=3.77e-03 273 img/s eta=16.4min
+  [diag] |g_bb|=3.843e+00 |g_head|=3.199e+00 feat_norm=36.46 scale=32768
+[ep12 1500/2099] loss=24.2752 acc=0.0000 lr=3.21e-03 1379 img/s eta=0.9min
+[epoch 12] loss=24.2336 acc=0.0000 用时 3.2 min
+[eval] lfw        acc=94.217%  thr=0.307  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.9422 @thr=0.307
+  [diag] |g_bb|=3.875e+00 |g_head|=3.160e+00 feat_norm=36.59 scale=32768
+[ep13 0/2099] loss=24.9278 acc=0.0000 lr=2.99e-03 315 img/s eta=14.2min
+  [diag] |g_bb|=3.840e+00 |g_head|=3.202e+00 feat_norm=35.91 scale=32768
+[ep13 1500/2099] loss=24.2199 acc=0.0000 lr=2.47e-03 1419 img/s eta=0.9min
+[epoch 13] loss=24.0802 acc=0.0000 用时 3.2 min
+[eval] lfw        acc=94.867%  thr=0.305  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.9487 @thr=0.305
+  [diag] |g_bb|=3.929e+00 |g_head|=3.093e+00 feat_norm=35.96 scale=32768
+[ep14 0/2099] loss=23.0100 acc=0.0000 lr=2.27e-03 282 img/s eta=15.9min
+  [diag] |g_bb|=3.921e+00 |g_head|=3.103e+00 feat_norm=35.05 scale=32768
+[ep14 1500/2099] loss=23.1637 acc=0.0000 lr=1.79e-03 1396 img/s eta=0.9min
+[epoch 14] loss=23.0595 acc=0.0000 用时 3.2 min
+[eval] lfw        acc=95.067%  thr=0.302  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.9507 @thr=0.302
+  [diag] |g_bb|=3.972e+00 |g_head|=3.036e+00 feat_norm=35.17 scale=32768
+[ep15 0/2099] loss=23.5155 acc=0.0000 lr=1.62e-03 264 img/s eta=17.0min
+  [diag] |g_bb|=4.044e+00 |g_head|=2.941e+00 feat_norm=34.92 scale=32768
+[ep15 1500/2099] loss=23.1628 acc=0.0000 lr=1.21e-03 1390 img/s eta=0.9min
+[epoch 15] loss=23.0147 acc=0.0000 用时 3.2 min
+[eval] lfw        acc=94.717%  thr=0.272  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.9472 @thr=0.272
+  [diag] |g_bb|=4.026e+00 |g_head|=2.964e+00 feat_norm=34.57 scale=32768
+[ep16 0/2099] loss=22.8147 acc=0.0000 lr=1.06e-03 314 img/s eta=14.3min
+  [diag] |g_bb|=4.156e+00 |g_head|=2.780e+00 feat_norm=34.27 scale=32768
+[ep16 1500/2099] loss=22.5603 acc=0.0000 lr=7.26e-04 1394 img/s eta=0.9min
+[epoch 16] loss=22.4774 acc=0.0000 用时 3.2 min
+[eval] lfw        acc=95.000%  thr=0.287  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.9500 @thr=0.287
+  [diag] |g_bb|=4.126e+00 |g_head|=2.824e+00 feat_norm=34.28 scale=32768
+[ep17 0/2099] loss=23.6581 acc=0.0000 lr=6.09e-04 290 img/s eta=15.4min
+  [diag] |g_bb|=4.134e+00 |g_head|=2.813e+00 feat_norm=33.98 scale=32768
+[ep17 1500/2099] loss=22.9782 acc=0.0000 lr=3.60e-04 1390 img/s eta=0.9min
+[epoch 17] loss=22.9557 acc=0.0000 用时 3.2 min
+[eval] lfw        acc=94.850%  thr=0.293  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.9485 @thr=0.293
+  [diag] |g_bb|=4.068e+00 |g_head|=2.907e+00 feat_norm=34.35 scale=32768
+[ep18 0/2099] loss=24.0166 acc=0.0000 lr=2.78e-04 293 img/s eta=15.3min
+  [diag] |g_bb|=4.055e+00 |g_head|=2.925e+00 feat_norm=34.32 scale=32768
+[ep18 1500/2099] loss=22.5112 acc=0.0000 lr=1.21e-04 1404 img/s eta=0.9min
+[epoch 18] loss=22.5319 acc=0.0000 用时 3.2 min
+[eval] lfw        acc=95.150%  thr=0.295  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.9515 @thr=0.295
+  [diag] |g_bb|=4.108e+00 |g_head|=2.850e+00 feat_norm=34.05 scale=32768
+[ep19 0/2099] loss=21.7645 acc=0.0000 lr=7.68e-05 262 img/s eta=17.1min
+  [diag] |g_bb|=4.087e+00 |g_head|=2.880e+00 feat_norm=34.36 scale=32768
+[ep19 1500/2099] loss=22.2715 acc=0.0000 lr=1.52e-05 1409 img/s eta=0.9min
+[epoch 19] loss=22.4981 acc=0.0000 用时 3.2 min
+[eval] lfw        acc=95.083%  thr=0.287  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.9508 @thr=0.287
+[done] 训练结束，权重在 checkpoints_gfn30k/
+[finetune136k] 挑 30k 最佳 epoch 微调到 136k...
+[finetune136k] 起点权重=checkpoints_gfn30k/backbone_ep18.pth
+[env] device=cuda  torch=2.14.1+cu130  amp=True
+[data] 1,182,654 张 / 136,418 类  每 epoch ≈ 9,239 step (bs=128)
+[model] ghostfacenet(w=1.0) 骨干 1.67M 参数, 分类头 69.85M 参数, 输出 512-d
+[finetune] 加载骨干 checkpoints_gfn30k/backbone_ep18.pth  missing=0 unexpected=0
+  [diag] |g_bb|=2.352e+00 |g_head|=4.412e+00 feat_norm=34.00 scale=65536
+[ep0 0/9239] loss=41.8040 acc=0.0000 lr=3.25e-07 18 img/s eta=1107.0min
+  [diag] |g_bb|=2.297e+00 |g_head|=4.441e+00 feat_norm=34.05 scale=65536
+[ep0 1500/9239] loss=40.9753 acc=0.0000 lr=4.87e-04 1060 img/s eta=15.6min
+  [diag] |g_bb|=1.996e+00 |g_head|=4.585e+00 feat_norm=35.91 scale=65536
+[ep0 3000/9239] loss=40.6210 acc=0.0000 lr=9.74e-04 1078 img/s eta=12.3min
+  [diag] |g_bb|=1.541e+00 |g_head|=4.757e+00 feat_norm=42.64 scale=65536
+[ep0 4500/9239] loss=39.9935 acc=0.0000 lr=1.46e-03 1087 img/s eta=9.3min
+  [diag] |g_bb|=1.381e+00 |g_head|=4.805e+00 feat_norm=46.65 scale=65536
+[ep0 6000/9239] loss=39.3351 acc=0.0000 lr=1.95e-03 1096 img/s eta=6.3min
+  [diag] |g_bb|=1.416e+00 |g_head|=4.795e+00 feat_norm=46.72 scale=131072
+[ep0 7500/9239] loss=38.7979 acc=0.0000 lr=2.44e-03 1103 img/s eta=3.4min
+  [diag] |g_bb|=1.604e+00 |g_head|=4.736e+00 feat_norm=44.94 scale=131072
+[ep0 9000/9239] loss=38.3805 acc=0.0000 lr=2.92e-03 1108 img/s eta=0.5min
+[epoch 0] loss=38.2935 acc=0.0000 用时 17.9 min
+[eval] lfw        acc=93.933%  thr=0.562  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.9393 @thr=0.562
+  [diag] |g_bb|=1.770e+00 |g_head|=4.676e+00 feat_norm=42.65 scale=131072
+[ep1 0/9239] loss=33.2207 acc=0.0000 lr=3.00e-03 286 img/s eta=68.9min
+  [diag] |g_bb|=1.782e+00 |g_head|=4.672e+00 feat_norm=40.67 scale=131072
+[ep1 1500/9239] loss=35.2256 acc=0.0000 lr=3.00e-03 1128 img/s eta=14.6min
+  [diag] |g_bb|=1.881e+00 |g_head|=4.633e+00 feat_norm=39.07 scale=131072
+[ep1 3000/9239] loss=34.7478 acc=0.0000 lr=2.99e-03 1130 img/s eta=11.8min
+  [diag] |g_bb|=2.024e+00 |g_head|=4.572e+00 feat_norm=38.47 scale=65536
+[ep1 4500/9239] loss=34.4753 acc=0.0000 lr=2.98e-03 1131 img/s eta=8.9min
+  [diag] |g_bb|=2.159e+00 |g_head|=4.510e+00 feat_norm=37.58 scale=65536
+[ep1 6000/9239] loss=34.0664 acc=0.0000 lr=2.96e-03 1131 img/s eta=6.1min
+  [diag] |g_bb|=2.107e+00 |g_head|=4.535e+00 feat_norm=36.52 scale=65536
+[ep1 7500/9239] loss=33.7008 acc=0.0000 lr=2.94e-03 1131 img/s eta=3.3min
+  [diag] |g_bb|=2.324e+00 |g_head|=4.427e+00 feat_norm=35.87 scale=65536
+[ep1 9000/9239] loss=33.4544 acc=0.0000 lr=2.91e-03 1131 img/s eta=0.5min
+[epoch 1] loss=33.3976 acc=0.0000 用时 17.5 min
+[eval] lfw        acc=96.067%  thr=0.414  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.9607 @thr=0.414
+  [diag] |g_bb|=2.299e+00 |g_head|=4.440e+00 feat_norm=35.99 scale=65536
+[ep2 0/9239] loss=31.6027 acc=0.0000 lr=2.91e-03 263 img/s eta=74.9min
+  [diag] |g_bb|=2.518e+00 |g_head|=4.320e+00 feat_norm=34.96 scale=65536
+[ep2 1500/9239] loss=31.0897 acc=0.0000 lr=2.88e-03 1125 img/s eta=14.7min
+  [diag] |g_bb|=2.474e+00 |g_head|=4.345e+00 feat_norm=33.88 scale=65536
+[ep2 3000/9239] loss=30.8505 acc=0.0000 lr=2.84e-03 1128 img/s eta=11.8min
+  [diag] |g_bb|=2.597e+00 |g_head|=4.272e+00 feat_norm=33.55 scale=65536
+[ep2 4500/9239] loss=30.7270 acc=0.0000 lr=2.80e-03 1129 img/s eta=9.0min
+  [diag] |g_bb|=2.752e+00 |g_head|=4.175e+00 feat_norm=33.43 scale=65536
+[ep2 6000/9239] loss=30.6093 acc=0.0000 lr=2.76e-03 1129 img/s eta=6.1min
+  [diag] |g_bb|=2.614e+00 |g_head|=4.262e+00 feat_norm=33.07 scale=32768
+[ep2 7500/9239] loss=30.4239 acc=0.0000 lr=2.71e-03 1129 img/s eta=3.3min
+  [diag] |g_bb|=2.708e+00 |g_head|=4.203e+00 feat_norm=31.77 scale=65536
+[ep2 9000/9239] loss=30.2836 acc=0.0000 lr=2.66e-03 1129 img/s eta=0.5min
+[epoch 2] loss=30.2689 acc=0.0000 用时 17.5 min
+[eval] lfw        acc=96.233%  thr=0.356  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.9623 @thr=0.356
+  [diag] |g_bb|=2.748e+00 |g_head|=4.177e+00 feat_norm=32.29 scale=65536
+[ep3 0/9239] loss=29.3205 acc=0.0000 lr=2.65e-03 286 img/s eta=69.0min
+  [diag] |g_bb|=3.046e+00 |g_head|=3.965e+00 feat_norm=32.08 scale=32768
+[ep3 1500/9239] loss=29.0897 acc=0.0000 lr=2.59e-03 1126 img/s eta=14.7min
+  [diag] |g_bb|=2.872e+00 |g_head|=4.093e+00 feat_norm=31.37 scale=32768
+[ep3 3000/9239] loss=28.7702 acc=0.0000 lr=2.53e-03 1129 img/s eta=11.8min
+  [diag] |g_bb|=2.931e+00 |g_head|=4.051e+00 feat_norm=30.93 scale=32768
+[ep3 4500/9239] loss=28.6490 acc=0.0000 lr=2.47e-03 1130 img/s eta=8.9min
+  [diag] |g_bb|=3.030e+00 |g_head|=3.977e+00 feat_norm=30.95 scale=32768
+[ep3 6000/9239] loss=28.5602 acc=0.0000 lr=2.40e-03 1130 img/s eta=6.1min
+  [diag] |g_bb|=2.991e+00 |g_head|=4.007e+00 feat_norm=30.46 scale=32768
+[ep3 7500/9239] loss=28.4623 acc=0.0000 lr=2.34e-03 1129 img/s eta=3.3min
+  [diag] |g_bb|=3.227e+00 |g_head|=3.819e+00 feat_norm=30.30 scale=32768
+[ep3 9000/9239] loss=28.3563 acc=0.0000 lr=2.26e-03 1128 img/s eta=0.5min
+[epoch 3] loss=28.3411 acc=0.0000 用时 17.6 min
+[eval] lfw        acc=96.217%  thr=0.338  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.9622 @thr=0.338
+  [diag] |g_bb|=3.034e+00 |g_head|=3.974e+00 feat_norm=30.34 scale=32768
+[ep4 0/9239] loss=29.2547 acc=0.0000 lr=2.25e-03 268 img/s eta=73.5min
+  [diag] |g_bb|=3.088e+00 |g_head|=3.933e+00 feat_norm=29.66 scale=32768
+[ep4 1500/9239] loss=27.8145 acc=0.0000 lr=2.18e-03 1114 img/s eta=14.8min
+  [diag] |g_bb|=3.251e+00 |g_head|=3.799e+00 feat_norm=29.48 scale=32768
+[ep4 3000/9239] loss=27.5356 acc=0.0000 lr=2.10e-03 1116 img/s eta=11.9min
+  [diag] |g_bb|=3.330e+00 |g_head|=3.730e+00 feat_norm=29.27 scale=32768
+[ep4 4500/9239] loss=27.4611 acc=0.0000 lr=2.02e-03 1115 img/s eta=9.1min
+  [diag] |g_bb|=3.202e+00 |g_head|=3.840e+00 feat_norm=29.38 scale=32768
+[ep4 6000/9239] loss=27.3638 acc=0.0000 lr=1.94e-03 1114 img/s eta=6.2min
+  [diag] |g_bb|=3.293e+00 |g_head|=3.762e+00 feat_norm=28.89 scale=32768
+[ep4 7500/9239] loss=27.2345 acc=0.0000 lr=1.86e-03 1115 img/s eta=3.3min
+  [diag] |g_bb|=3.418e+00 |g_head|=3.649e+00 feat_norm=28.49 scale=32768
+[ep4 9000/9239] loss=27.1404 acc=0.0000 lr=1.78e-03 1117 img/s eta=0.5min
+[epoch 4] loss=27.1214 acc=0.0000 用时 17.7 min
+[eval] lfw        acc=95.767%  thr=0.315  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.9577 @thr=0.315
+  [diag] |g_bb|=3.506e+00 |g_head|=3.565e+00 feat_norm=28.37 scale=32768
+[ep5 0/9239] loss=27.7965 acc=0.0000 lr=1.76e-03 262 img/s eta=75.3min
+  [diag] |g_bb|=3.346e+00 |g_head|=3.715e+00 feat_norm=28.26 scale=32768
+[ep5 1500/9239] loss=26.3880 acc=0.0000 lr=1.68e-03 1122 img/s eta=14.7min
+  [diag] |g_bb|=3.521e+00 |g_head|=3.550e+00 feat_norm=28.23 scale=32768
+[ep5 3000/9239] loss=26.3792 acc=0.0000 lr=1.60e-03 1119 img/s eta=11.9min
+  [diag] |g_bb|=3.508e+00 |g_head|=3.563e+00 feat_norm=27.77 scale=32768
+[ep5 4500/9239] loss=26.2969 acc=0.0000 lr=1.51e-03 1118 img/s eta=9.0min
+  [diag] |g_bb|=3.494e+00 |g_head|=3.577e+00 feat_norm=27.97 scale=32768
+[ep5 6000/9239] loss=26.2918 acc=0.0000 lr=1.43e-03 1117 img/s eta=6.2min
+  [diag] |g_bb|=3.602e+00 |g_head|=3.468e+00 feat_norm=27.49 scale=32768
+[ep5 7500/9239] loss=26.2374 acc=0.0000 lr=1.34e-03 1117 img/s eta=3.3min
+  [diag] |g_bb|=3.424e+00 |g_head|=3.644e+00 feat_norm=27.50 scale=32768
+[ep5 9000/9239] loss=26.2061 acc=0.0000 lr=1.26e-03 1117 img/s eta=0.5min
+[epoch 5] loss=26.1967 acc=0.0000 用时 17.6 min
+[eval] lfw        acc=96.483%  thr=0.307  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.9648 @thr=0.307
+  [diag] |g_bb|=3.523e+00 |g_head|=3.548e+00 feat_norm=27.20 scale=32768
+[ep6 0/9239] loss=23.8793 acc=0.0000 lr=1.25e-03 370 img/s eta=53.3min
+  [diag] |g_bb|=3.637e+00 |g_head|=3.431e+00 feat_norm=27.16 scale=32768
+[ep6 1500/9239] loss=25.8120 acc=0.0000 lr=1.16e-03 1129 img/s eta=14.6min
+  [diag] |g_bb|=3.654e+00 |g_head|=3.413e+00 feat_norm=26.77 scale=32768
+[ep6 3000/9239] loss=25.7788 acc=0.0000 lr=1.08e-03 1129 img/s eta=11.8min
+  [diag] |g_bb|=3.680e+00 |g_head|=3.385e+00 feat_norm=26.63 scale=32768
+[ep6 4500/9239] loss=25.6949 acc=0.0000 lr=1.00e-03 1129 img/s eta=9.0min
+  [diag] |g_bb|=3.548e+00 |g_head|=3.523e+00 feat_norm=26.71 scale=32768
+[ep6 6000/9239] loss=25.7042 acc=0.0000 lr=9.21e-04 1129 img/s eta=6.1min
+  [diag] |g_bb|=3.635e+00 |g_head|=3.433e+00 feat_norm=26.62 scale=32768
+[ep6 7500/9239] loss=25.6763 acc=0.0000 lr=8.44e-04 1129 img/s eta=3.3min
+  [diag] |g_bb|=3.727e+00 |g_head|=3.334e+00 feat_norm=26.46 scale=32768
+[ep6 9000/9239] loss=25.6206 acc=0.0000 lr=7.69e-04 1129 img/s eta=0.5min
+[epoch 6] loss=25.6327 acc=0.0000 用时 17.5 min
+[eval] lfw        acc=96.317%  thr=0.329  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.9632 @thr=0.329
+  [diag] |g_bb|=3.616e+00 |g_head|=3.453e+00 feat_norm=26.45 scale=32768
+[ep7 0/9239] loss=26.5846 acc=0.0000 lr=7.57e-04 265 img/s eta=74.4min
+  [diag] |g_bb|=3.650e+00 |g_head|=3.417e+00 feat_norm=26.27 scale=32768
+[ep7 1500/9239] loss=25.1715 acc=0.0000 lr=6.85e-04 1123 img/s eta=14.7min
+  [diag] |g_bb|=3.672e+00 |g_head|=3.393e+00 feat_norm=26.16 scale=32768
+[ep7 3000/9239] loss=25.1700 acc=0.0000 lr=6.15e-04 1125 img/s eta=11.8min
+  [diag] |g_bb|=3.748e+00 |g_head|=3.309e+00 feat_norm=26.08 scale=32768
+[ep7 4500/9239] loss=25.0612 acc=0.0000 lr=5.49e-04 1126 img/s eta=9.0min
+  [diag] |g_bb|=3.677e+00 |g_head|=3.388e+00 feat_norm=26.10 scale=32768
+[ep7 6000/9239] loss=25.0797 acc=0.0000 lr=4.85e-04 1126 img/s eta=6.1min
+  [diag] |g_bb|=3.686e+00 |g_head|=3.379e+00 feat_norm=26.00 scale=16384
+[ep7 7500/9239] loss=25.0721 acc=0.0000 lr=4.25e-04 1127 img/s eta=3.3min
+  [diag] |g_bb|=3.758e+00 |g_head|=3.298e+00 feat_norm=25.85 scale=16384
+[ep7 9000/9239] loss=25.0876 acc=0.0000 lr=3.68e-04 1127 img/s eta=0.5min
+[epoch 7] loss=25.0893 acc=0.0000 用时 17.5 min
+[eval] lfw        acc=96.767%  thr=0.352  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.9677 @thr=0.352
+  [diag] |g_bb|=3.801e+00 |g_head|=3.249e+00 feat_norm=26.05 scale=16384
+[ep8 0/9239] loss=24.0383 acc=0.0000 lr=3.59e-04 269 img/s eta=73.3min
+  [diag] |g_bb|=3.801e+00 |g_head|=3.248e+00 feat_norm=25.93 scale=16384
+[ep8 1500/9239] loss=24.9084 acc=0.0000 lr=3.07e-04 1127 img/s eta=14.6min
+  [diag] |g_bb|=3.857e+00 |g_head|=3.181e+00 feat_norm=25.89 scale=32768
+[ep8 3000/9239] loss=24.8959 acc=0.0000 lr=2.58e-04 1129 img/s eta=11.8min
+  [diag] |g_bb|=3.829e+00 |g_head|=3.215e+00 feat_norm=25.75 scale=32768
+[ep8 4500/9239] loss=24.8556 acc=0.0000 lr=2.13e-04 1129 img/s eta=9.0min
+  [diag] |g_bb|=3.805e+00 |g_head|=3.243e+00 feat_norm=25.73 scale=32768
+[ep8 6000/9239] loss=24.8659 acc=0.0000 lr=1.73e-04 1129 img/s eta=6.1min
+  [diag] |g_bb|=3.746e+00 |g_head|=3.312e+00 feat_norm=25.72 scale=32768
+[ep8 7500/9239] loss=24.8371 acc=0.0000 lr=1.37e-04 1130 img/s eta=3.3min
+  [diag] |g_bb|=3.795e+00 |g_head|=3.256e+00 feat_norm=25.75 scale=32768
+[ep8 9000/9239] loss=24.8872 acc=0.0000 lr=1.05e-04 1130 img/s eta=0.5min
+[epoch 8] loss=24.8869 acc=0.0000 用时 17.4 min
+[eval] lfw        acc=96.700%  thr=0.323  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.9670 @thr=0.323
+  [diag] |g_bb|=3.832e+00 |g_head|=3.212e+00 feat_norm=25.67 scale=32768
+[ep9 0/9239] loss=25.8389 acc=0.0000 lr=1.00e-04 266 img/s eta=74.0min
+  [diag] |g_bb|=3.741e+00 |g_head|=3.317e+00 feat_norm=25.64 scale=32768
+[ep9 1500/9239] loss=24.9627 acc=0.0000 lr=7.33e-05 1126 img/s eta=14.7min
+  [diag] |g_bb|=3.841e+00 |g_head|=3.202e+00 feat_norm=25.74 scale=32768
+[ep9 3000/9239] loss=24.8757 acc=0.0000 lr=5.12e-05 1128 img/s eta=11.8min
+  [diag] |g_bb|=3.756e+00 |g_head|=3.300e+00 feat_norm=25.57 scale=32768
+[ep9 4500/9239] loss=24.8810 acc=0.0000 lr=3.38e-05 1128 img/s eta=9.0min
+  [diag] |g_bb|=3.754e+00 |g_head|=3.303e+00 feat_norm=25.73 scale=32768
+[ep9 6000/9239] loss=24.8081 acc=0.0000 lr=2.11e-05 1128 img/s eta=6.1min
+  [diag] |g_bb|=3.797e+00 |g_head|=3.253e+00 feat_norm=25.50 scale=32768
+[ep9 7500/9239] loss=24.8022 acc=0.0000 lr=1.32e-05 1129 img/s eta=3.3min
+  [diag] |g_bb|=3.761e+00 |g_head|=3.294e+00 feat_norm=25.65 scale=16384
+[ep9 9000/9239] loss=24.8028 acc=0.0000 lr=1.01e-05 1129 img/s eta=0.5min
+[epoch 9] loss=24.8064 acc=0.0000 用时 17.5 min
+[eval] lfw        acc=96.700%  thr=0.333  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.9670 @thr=0.333
+[done] 训练结束，权重在 checkpoints_gfn136_ft/
+[direct136k] GhostFaceNet 直接在 136k 训 lr=0.003...
+[env] device=cuda  torch=2.14.1+cu130  amp=True
+[data] 1,182,654 张 / 136,418 类  每 epoch ≈ 9,239 step (bs=128)
+[model] ghostfacenet(w=1.0) 骨干 1.67M 参数, 分类头 69.85M 参数, 输出 512-d
+  [diag] |g_bb|=nan |g_head|=0.000e+00 feat_norm=8.83 scale=65536
+[ep0 0/9239] loss=41.3694 acc=0.0000 lr=3.25e-07 19 img/s eta=1064.9min
+  [diag] |g_bb|=4.443e+00 |g_head|=2.294e+00 feat_norm=9.79 scale=4096
+[ep0 1500/9239] loss=41.3344 acc=0.0000 lr=4.87e-04 1059 img/s eta=15.6min
+  [diag] |g_bb|=3.062e+00 |g_head|=3.953e+00 feat_norm=22.87 scale=8192
+[ep0 3000/9239] loss=40.8157 acc=0.0000 lr=9.74e-04 1075 img/s eta=12.4min
+  [diag] |g_bb|=2.741e+00 |g_head|=4.182e+00 feat_norm=32.00 scale=16384
+[ep0 4500/9239] loss=40.0277 acc=0.0000 lr=1.46e-03 1083 img/s eta=9.3min
+  [diag] |g_bb|=1.557e+00 |g_head|=4.751e+00 feat_norm=34.36 scale=16384
+[ep0 6000/9239] loss=39.4925 acc=0.0000 lr=1.95e-03 1088 img/s eta=6.3min
+  [diag] |g_bb|=2.222e+00 |g_head|=4.479e+00 feat_norm=35.93 scale=16384
+[ep0 7500/9239] loss=39.1745 acc=0.0000 lr=2.44e-03 1090 img/s eta=3.4min
+  [diag] |g_bb|=1.423e+00 |g_head|=4.793e+00 feat_norm=41.50 scale=8192
+[ep0 9000/9239] loss=38.9973 acc=0.0000 lr=2.92e-03 1092 img/s eta=0.5min
+[epoch 0] loss=38.9727 acc=0.0000 用时 18.2 min
+[eval] lfw        acc=55.700%  thr=0.999  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.5570 @thr=0.999
+  [diag] |g_bb|=8.222e-01 |g_head|=4.932e+00 feat_norm=46.16 scale=8192
+[ep1 0/9239] loss=37.4195 acc=0.0000 lr=3.00e-03 263 img/s eta=74.9min
+  [diag] |g_bb|=1.078e+00 |g_head|=4.882e+00 feat_norm=47.14 scale=8192
+[ep1 1500/9239] loss=38.1677 acc=0.0000 lr=3.00e-03 1089 img/s eta=15.2min
+  [diag] |g_bb|=1.650e+00 |g_head|=4.720e+00 feat_norm=52.53 scale=16384
+[ep1 3000/9239] loss=38.1492 acc=0.0000 lr=2.99e-03 1091 img/s eta=12.2min
+  [diag] |g_bb|=3.021e+00 |g_head|=3.984e+00 feat_norm=49.46 scale=16384
+[ep1 4500/9239] loss=38.1599 acc=0.0000 lr=2.99e-03 1091 img/s eta=9.3min
+  [diag] |g_bb|=2.997e+00 |g_head|=4.002e+00 feat_norm=53.93 scale=8192
+[ep1 6000/9239] loss=38.1350 acc=0.0000 lr=2.97e-03 1091 img/s eta=6.3min
+  [diag] |g_bb|=1.292e+00 |g_head|=4.830e+00 feat_norm=46.81 scale=16384
+[ep1 7500/9239] loss=38.1321 acc=0.0000 lr=2.96e-03 1091 img/s eta=3.4min
+  [diag] |g_bb|=2.036e+00 |g_head|=4.567e+00 feat_norm=55.59 scale=8192
+[ep1 9000/9239] loss=38.1315 acc=0.0000 lr=2.94e-03 1090 img/s eta=0.5min
+[epoch 1] loss=38.1298 acc=0.0000 用时 18.2 min
+[eval] lfw        acc=58.817%  thr=0.999  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.5882 @thr=0.999
+  [diag] |g_bb|=7.417e-01 |g_head|=4.945e+00 feat_norm=56.81 scale=8192
+[ep2 0/9239] loss=38.3359 acc=0.0000 lr=2.94e-03 377 img/s eta=52.3min
+  [diag] |g_bb|=5.287e-01 |g_head|=4.972e+00 feat_norm=58.12 scale=8192
+[ep2 1500/9239] loss=38.0803 acc=0.0000 lr=2.92e-03 1106 img/s eta=14.9min
+  [diag] |g_bb|=5.234e-01 |g_head|=4.973e+00 feat_norm=53.94 scale=4096
+[ep2 3000/9239] loss=38.0544 acc=0.0000 lr=2.89e-03 1115 img/s eta=11.9min
+  [diag] |g_bb|=5.691e-01 |g_head|=4.968e+00 feat_norm=50.14 scale=8192
+[ep2 4500/9239] loss=38.0590 acc=0.0000 lr=2.87e-03 1118 img/s eta=9.0min
+  [diag] |g_bb|=8.174e-01 |g_head|=4.933e+00 feat_norm=51.93 scale=8192
+[ep2 6000/9239] loss=38.0526 acc=0.0000 lr=2.84e-03 1120 img/s eta=6.2min
+  [diag] |g_bb|=9.100e-01 |g_head|=4.916e+00 feat_norm=38.93 scale=8192
+[ep2 7500/9239] loss=38.0485 acc=0.0000 lr=2.80e-03 1114 img/s eta=3.3min
+  [diag] |g_bb|=1.938e+00 |g_head|=4.609e+00 feat_norm=43.45 scale=8192
+[ep2 9000/9239] loss=38.0545 acc=0.0000 lr=2.77e-03 1109 img/s eta=0.5min
+[epoch 2] loss=38.0559 acc=0.0000 用时 17.8 min
+[eval] lfw        acc=59.900%  thr=0.999  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.5990 @thr=0.999
+  [diag] |g_bb|=1.346e+00 |g_head|=4.815e+00 feat_norm=49.08 scale=8192
+[ep3 0/9239] loss=38.2238 acc=0.0000 lr=2.76e-03 289 img/s eta=68.2min
+  [diag] |g_bb|=5.644e-01 |g_head|=4.968e+00 feat_norm=44.12 scale=4096
+[ep3 1500/9239] loss=38.0448 acc=0.0000 lr=2.72e-03 1084 img/s eta=15.2min
+  [diag] |g_bb|=2.617e+00 |g_head|=4.260e+00 feat_norm=45.50 scale=8192
+[ep3 3000/9239] loss=38.0118 acc=0.0000 lr=2.68e-03 1089 img/s eta=12.2min
+  [diag] |g_bb|=5.490e-01 |g_head|=4.970e+00 feat_norm=46.38 scale=8192
+[ep3 4500/9239] loss=38.0105 acc=0.0000 lr=2.64e-03 1089 img/s eta=9.3min
+  [diag] |g_bb|=5.364e-01 |g_head|=4.971e+00 feat_norm=51.02 scale=16384
+[ep3 6000/9239] loss=38.0004 acc=0.0000 lr=2.59e-03 1096 img/s eta=6.3min
+  [diag] |g_bb|=6.524e-01 |g_head|=4.957e+00 feat_norm=42.65 scale=8192
+[ep3 7500/9239] loss=37.9806 acc=0.0000 lr=2.54e-03 1101 img/s eta=3.4min
+  [diag] |g_bb|=1.075e+00 |g_head|=4.883e+00 feat_norm=48.96 scale=8192
+[ep3 9000/9239] loss=37.9783 acc=0.0000 lr=2.49e-03 1099 img/s eta=0.5min
+[epoch 3] loss=37.9709 acc=0.0000 用时 18.0 min
+[eval] lfw        acc=66.950%  thr=0.990  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.6695 @thr=0.990
+  [diag] |g_bb|=5.902e-01 |g_head|=4.965e+00 feat_norm=50.38 scale=8192
+[ep4 0/9239] loss=38.3916 acc=0.0000 lr=2.48e-03 283 img/s eta=69.7min
+  [diag] |g_bb|=1.371e+00 |g_head|=4.808e+00 feat_norm=44.77 scale=8192
+[ep4 1500/9239] loss=37.8286 acc=0.0000 lr=2.43e-03 1086 img/s eta=15.2min
+  [diag] |g_bb|=9.259e-01 |g_head|=4.914e+00 feat_norm=44.96 scale=16384
+[ep4 3000/9239] loss=37.7862 acc=0.0000 lr=2.37e-03 1088 img/s eta=12.2min
+  [diag] |g_bb|=8.574e-01 |g_head|=4.926e+00 feat_norm=42.98 scale=8192
+[ep4 4500/9239] loss=37.7576 acc=0.0000 lr=2.32e-03 1098 img/s eta=9.2min
+  [diag] |g_bb|=8.273e-01 |g_head|=4.931e+00 feat_norm=43.08 scale=16384
+[ep4 6000/9239] loss=37.6806 acc=0.0000 lr=2.26e-03 1104 img/s eta=6.3min
+  [diag] |g_bb|=1.081e+00 |g_head|=4.882e+00 feat_norm=39.61 scale=16384
+[ep4 7500/9239] loss=37.6453 acc=0.0000 lr=2.20e-03 1108 img/s eta=3.3min
+  [diag] |g_bb|=1.066e+00 |g_head|=4.885e+00 feat_norm=43.82 scale=16384
+[ep4 9000/9239] loss=37.6028 acc=0.0000 lr=2.14e-03 1111 img/s eta=0.5min
+[epoch 4] loss=37.5924 acc=0.0000 用时 17.8 min
+[eval] lfw        acc=69.767%  thr=0.842  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.6977 @thr=0.842
+  [diag] |g_bb|=1.123e+00 |g_head|=4.872e+00 feat_norm=43.24 scale=16384
+[ep5 0/9239] loss=38.2912 acc=0.0000 lr=2.13e-03 262 img/s eta=75.3min
+  [diag] |g_bb|=1.112e+00 |g_head|=4.875e+00 feat_norm=40.33 scale=16384
+[ep5 1500/9239] loss=37.3390 acc=0.0000 lr=2.06e-03 1087 img/s eta=15.2min
+  [diag] |g_bb|=1.293e+00 |g_head|=4.830e+00 feat_norm=42.42 scale=16384
+[ep5 3000/9239] loss=37.3320 acc=0.0000 lr=2.00e-03 1086 img/s eta=12.3min
+  [diag] |g_bb|=1.293e+00 |g_head|=4.830e+00 feat_norm=43.71 scale=32768
+[ep5 4500/9239] loss=37.2940 acc=0.0000 lr=1.93e-03 1088 img/s eta=9.3min
+  [diag] |g_bb|=1.211e+00 |g_head|=4.851e+00 feat_norm=40.48 scale=16384
+[ep5 6000/9239] loss=37.2522 acc=0.0000 lr=1.86e-03 1087 img/s eta=6.4min
+  [diag] |g_bb|=1.229e+00 |g_head|=4.846e+00 feat_norm=40.36 scale=16384
+[ep5 7500/9239] loss=37.2369 acc=0.0000 lr=1.80e-03 1089 img/s eta=3.4min
+  [diag] |g_bb|=1.238e+00 |g_head|=4.844e+00 feat_norm=42.28 scale=16384
+[ep5 9000/9239] loss=37.2092 acc=0.0000 lr=1.73e-03 1090 img/s eta=0.5min
+[epoch 5] loss=37.2021 acc=0.0000 用时 18.1 min
+[eval] lfw        acc=72.567%  thr=0.804  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.7257 @thr=0.804
+  [diag] |g_bb|=1.278e+00 |g_head|=4.834e+00 feat_norm=37.77 scale=16384
+[ep6 0/9239] loss=37.3185 acc=0.0000 lr=1.72e-03 262 img/s eta=75.3min
+  [diag] |g_bb|=1.487e+00 |g_head|=4.774e+00 feat_norm=36.39 scale=32768
+[ep6 1500/9239] loss=37.0387 acc=0.0000 lr=1.65e-03 1085 img/s eta=15.2min
+  [diag] |g_bb|=1.929e+00 |g_head|=4.613e+00 feat_norm=37.69 scale=32768
+[ep6 3000/9239] loss=37.0004 acc=0.0000 lr=1.58e-03 1093 img/s eta=12.2min
+  [diag] |g_bb|=1.628e+00 |g_head|=4.727e+00 feat_norm=39.11 scale=32768
+[ep6 4500/9239] loss=36.9734 acc=0.0000 lr=1.51e-03 1100 img/s eta=9.2min
+  [diag] |g_bb|=1.452e+00 |g_head|=4.785e+00 feat_norm=39.61 scale=32768
+[ep6 6000/9239] loss=36.9388 acc=0.0000 lr=1.44e-03 1106 img/s eta=6.2min
+  [diag] |g_bb|=1.467e+00 |g_head|=4.780e+00 feat_norm=39.42 scale=32768
+[ep6 7500/9239] loss=36.9289 acc=0.0000 lr=1.37e-03 1110 img/s eta=3.3min
+  [diag] |g_bb|=1.914e+00 |g_head|=4.619e+00 feat_norm=39.00 scale=65536
+[ep6 9000/9239] loss=36.8779 acc=0.0000 lr=1.30e-03 1112 img/s eta=0.5min
+[epoch 6] loss=36.8821 acc=0.0000 用时 17.8 min
+[eval] lfw        acc=75.367%  thr=0.817  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.7537 @thr=0.817
+  [diag] |g_bb|=1.551e+00 |g_head|=4.753e+00 feat_norm=36.62 scale=65536
+[ep7 0/9239] loss=37.1481 acc=0.0000 lr=1.29e-03 258 img/s eta=76.4min
+  [diag] |g_bb|=1.686e+00 |g_head|=4.707e+00 feat_norm=37.34 scale=32768
+[ep7 1500/9239] loss=36.6816 acc=0.0000 lr=1.22e-03 1089 img/s eta=15.2min
+  [diag] |g_bb|=1.660e+00 |g_head|=4.716e+00 feat_norm=37.88 scale=32768
+[ep7 3000/9239] loss=36.6182 acc=0.0000 lr=1.16e-03 1090 img/s eta=12.2min
+  [diag] |g_bb|=1.873e+00 |g_head|=4.636e+00 feat_norm=37.31 scale=32768
+[ep7 4500/9239] loss=36.5841 acc=0.0000 lr=1.09e-03 1090 img/s eta=9.3min
+  [diag] |g_bb|=1.805e+00 |g_head|=4.663e+00 feat_norm=33.86 scale=65536
+[ep7 6000/9239] loss=36.5478 acc=0.0000 lr=1.02e-03 1096 img/s eta=6.3min
+  [diag] |g_bb|=1.913e+00 |g_head|=4.620e+00 feat_norm=38.17 scale=65536
+[ep7 7500/9239] loss=36.5066 acc=0.0000 lr=9.58e-04 1096 img/s eta=3.4min
+  [diag] |g_bb|=2.085e+00 |g_head|=4.545e+00 feat_norm=34.89 scale=32768
+[ep7 9000/9239] loss=36.4763 acc=0.0000 lr=8.94e-04 1095 img/s eta=0.5min
+[epoch 7] loss=36.4675 acc=0.0000 用时 18.0 min
+[eval] lfw        acc=79.500%  thr=0.725  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.7950 @thr=0.725
+  [diag] |g_bb|=1.859e+00 |g_head|=4.642e+00 feat_norm=38.26 scale=32768
+[ep8 0/9239] loss=35.1877 acc=0.0000 lr=8.84e-04 274 img/s eta=71.8min
+  [diag] |g_bb|=2.283e+00 |g_head|=4.448e+00 feat_norm=31.37 scale=65536
+[ep8 1500/9239] loss=36.1010 acc=0.0000 lr=8.21e-04 1087 img/s eta=15.2min
+  [diag] |g_bb|=1.816e+00 |g_head|=4.659e+00 feat_norm=37.31 scale=32768
+[ep8 3000/9239] loss=36.1397 acc=0.0000 lr=7.60e-04 1087 img/s eta=12.2min
+  [diag] |g_bb|=1.875e+00 |g_head|=4.635e+00 feat_norm=35.87 scale=32768
+[ep8 4500/9239] loss=36.1257 acc=0.0000 lr=7.01e-04 1088 img/s eta=9.3min
+  [diag] |g_bb|=1.952e+00 |g_head|=4.603e+00 feat_norm=35.76 scale=65536
+[ep8 6000/9239] loss=36.0964 acc=0.0000 lr=6.43e-04 1087 img/s eta=6.4min
+  [diag] |g_bb|=2.285e+00 |g_head|=4.447e+00 feat_norm=31.86 scale=32768
+[ep8 7500/9239] loss=36.0712 acc=0.0000 lr=5.88e-04 1087 img/s eta=3.4min
+  [diag] |g_bb|=2.099e+00 |g_head|=4.538e+00 feat_norm=32.92 scale=32768
+[ep8 9000/9239] loss=36.0484 acc=0.0000 lr=5.34e-04 1087 img/s eta=0.5min
+[epoch 8] loss=36.0400 acc=0.0000 用时 18.1 min
+[eval] lfw        acc=82.217%  thr=0.687  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.8222 @thr=0.687
+  [diag] |g_bb|=2.229e+00 |g_head|=4.476e+00 feat_norm=34.65 scale=32768
+[ep9 0/9239] loss=35.8685 acc=0.0000 lr=5.26e-04 283 img/s eta=69.7min
+  [diag] |g_bb|=2.256e+00 |g_head|=4.462e+00 feat_norm=31.98 scale=32768
+[ep9 1500/9239] loss=35.7283 acc=0.0000 lr=4.74e-04 1084 img/s eta=15.2min
+  [diag] |g_bb|=2.064e+00 |g_head|=4.554e+00 feat_norm=35.84 scale=32768
+[ep9 3000/9239] loss=35.7964 acc=0.0000 lr=4.25e-04 1086 img/s eta=12.3min
+  [diag] |g_bb|=2.049e+00 |g_head|=4.561e+00 feat_norm=33.93 scale=32768
+[ep9 4500/9239] loss=35.7808 acc=0.0000 lr=3.78e-04 1088 img/s eta=9.3min
+  [diag] |g_bb|=2.449e+00 |g_head|=4.359e+00 feat_norm=31.87 scale=32768
+[ep9 6000/9239] loss=35.7634 acc=0.0000 lr=3.34e-04 1089 img/s eta=6.3min
+  [diag] |g_bb|=2.341e+00 |g_head|=4.418e+00 feat_norm=30.87 scale=65536
+[ep9 7500/9239] loss=35.7531 acc=0.0000 lr=2.92e-04 1089 img/s eta=3.4min
+  [diag] |g_bb|=2.189e+00 |g_head|=4.495e+00 feat_norm=32.65 scale=32768
+[ep9 9000/9239] loss=35.7367 acc=0.0000 lr=2.53e-04 1090 img/s eta=0.5min
+[epoch 9] loss=35.7315 acc=0.0000 用时 18.1 min
+[eval] lfw        acc=83.417%  thr=0.706  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.8342 @thr=0.706
+  [diag] |g_bb|=2.224e+00 |g_head|=4.478e+00 feat_norm=33.71 scale=32768
+[ep10 0/9239] loss=35.6640 acc=0.0000 lr=2.47e-04 279 img/s eta=70.6min
+  [diag] |g_bb|=2.209e+00 |g_head|=4.486e+00 feat_norm=32.78 scale=32768
+[ep10 1500/9239] loss=35.6158 acc=0.0000 lr=2.11e-04 1116 img/s eta=14.8min
+  [diag] |g_bb|=2.429e+00 |g_head|=4.370e+00 feat_norm=33.54 scale=32768
+[ep10 3000/9239] loss=35.6092 acc=0.0000 lr=1.78e-04 1106 img/s eta=12.0min
+  [diag] |g_bb|=2.176e+00 |g_head|=4.502e+00 feat_norm=32.92 scale=32768
+[ep10 4500/9239] loss=35.5881 acc=0.0000 lr=1.47e-04 1105 img/s eta=9.2min
+  [diag] |g_bb|=2.209e+00 |g_head|=4.486e+00 feat_norm=33.60 scale=32768
+[ep10 6000/9239] loss=35.5953 acc=0.0000 lr=1.20e-04 1108 img/s eta=6.2min
+  [diag] |g_bb|=2.197e+00 |g_head|=4.491e+00 feat_norm=34.54 scale=32768
+[ep10 7500/9239] loss=35.5881 acc=0.0000 lr=9.51e-05 1106 img/s eta=3.4min
+  [diag] |g_bb|=2.240e+00 |g_head|=4.470e+00 feat_norm=32.95 scale=32768
+[ep10 9000/9239] loss=35.5878 acc=0.0000 lr=7.36e-05 1103 img/s eta=0.5min
+[epoch 10] loss=35.5853 acc=0.0000 用时 17.9 min
+[eval] lfw        acc=83.967%  thr=0.687  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.8397 @thr=0.687
+  [diag] |g_bb|=2.184e+00 |g_head|=4.498e+00 feat_norm=32.61 scale=32768
+[ep11 0/9239] loss=35.4900 acc=0.0000 lr=7.04e-05 258 img/s eta=76.4min
+  [diag] |g_bb|=2.113e+00 |g_head|=4.532e+00 feat_norm=33.47 scale=32768
+[ep11 1500/9239] loss=35.5193 acc=0.0000 lr=5.24e-05 1111 img/s eta=14.9min
+  [diag] |g_bb|=2.332e+00 |g_head|=4.423e+00 feat_norm=33.52 scale=32768
+[ep11 3000/9239] loss=35.5281 acc=0.0000 lr=3.76e-05 1102 img/s eta=12.1min
+  [diag] |g_bb|=2.275e+00 |g_head|=4.452e+00 feat_norm=31.18 scale=32768
+[ep11 4500/9239] loss=35.5300 acc=0.0000 lr=2.59e-05 1102 img/s eta=9.2min
+  [diag] |g_bb|=2.336e+00 |g_head|=4.421e+00 feat_norm=33.24 scale=65536
+[ep11 6000/9239] loss=35.5404 acc=0.0000 lr=1.74e-05 1103 img/s eta=6.3min
+  [diag] |g_bb|=2.325e+00 |g_head|=4.426e+00 feat_norm=31.76 scale=32768
+[ep11 7500/9239] loss=35.5344 acc=0.0000 lr=1.21e-05 1107 img/s eta=3.4min
+  [diag] |g_bb|=2.602e+00 |g_head|=4.270e+00 feat_norm=31.85 scale=32768
+[ep11 9000/9239] loss=35.5390 acc=0.0000 lr=1.00e-05 1110 img/s eta=0.5min
+[epoch 11] loss=35.5377 acc=0.0000 用时 17.8 min
+[eval] lfw        acc=84.283%  thr=0.689  n_pair=6000  (参考量级 99.7%)
+[eval] LFW acc=0.8428 @thr=0.689
+[done] 训练结束，权重在 checkpoints_gfn136_lr3/

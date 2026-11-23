@@ -1,0 +1,24 @@
+[model] load_state_dict -> <All keys matched successfully>
+Traceback (most recent call last):
+  File "qat_gate.py", line 278, in <module>
+    main()
+  File "qat_gate.py", line 176, in main
+    model = build_model(args.ckpt, dev)
+  File "qat_gate.py", line 45, in build_model
+    return model.eval().to(device)
+  File "/opt/vitis_ai/conda/envs/vitis-ai-wego-torch/lib/python3.7/site-packages/torch/nn/modules/module.py", line 927, in to
+    return self._apply(convert)
+  File "/opt/vitis_ai/conda/envs/vitis-ai-wego-torch/lib/python3.7/site-packages/torch/nn/modules/module.py", line 579, in _apply
+    module._apply(fn)
+  File "/opt/vitis_ai/conda/envs/vitis-ai-wego-torch/lib/python3.7/site-packages/torch/nn/modules/module.py", line 579, in _apply
+    module._apply(fn)
+  File "/opt/vitis_ai/conda/envs/vitis-ai-wego-torch/lib/python3.7/site-packages/torch/nn/modules/module.py", line 579, in _apply
+    module._apply(fn)
+  [Previous line repeated 1 more time]
+  File "/opt/vitis_ai/conda/envs/vitis-ai-wego-torch/lib/python3.7/site-packages/torch/nn/modules/module.py", line 602, in _apply
+    param_applied = fn(param)
+  File "/opt/vitis_ai/conda/envs/vitis-ai-wego-torch/lib/python3.7/site-packages/torch/nn/modules/module.py", line 925, in convert
+    return t.to(device, dtype if t.is_floating_point() or t.is_complex() else None, non_blocking)
+  File "/opt/vitis_ai/conda/envs/vitis-ai-wego-torch/lib/python3.7/site-packages/torch/cuda/__init__.py", line 211, in _lazy_init
+    raise AssertionError("Torch not compiled with CUDA enabled")
+AssertionError: Torch not compiled with CUDA enabled

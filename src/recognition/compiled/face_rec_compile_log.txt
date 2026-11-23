@@ -1,0 +1,13 @@
+[UNILOG][INFO] Compile mode: dpu
+[UNILOG][INFO] Debug mode: null
+[UNILOG][INFO] Target architecture: DPUCZDX8G_ISA1_B4096
+[UNILOG][INFO] Graph name: MobileFaceNetLite, with op num: 142
+[UNILOG][INFO] Begin to compile...
+[UNILOG][INFO] Total device subgraph number 3, DPU subgraph number 1
+[UNILOG][INFO] Compile done.
+[UNILOG][INFO] The meta json is saved to "/workspace/compiled/meta.json"
+[UNILOG][INFO] The compiled xmodel is saved to "/workspace/compiled/face_rec.xmodel"
+[UNILOG][INFO] The compiled xmodel's md5sum is b2b6767db84bf3f3950604661e96efbc, and has been saved to "/workspace/compiled/md5sum.txt"
+**************************************************
+* VITIS_AI Compilation - Xilinx Inc.
+**************************************************

@@ -1,0 +1,2 @@
+Vitis-AI 3.0 docker 内依赖（vai-q-tensorflow2 / vitis_quantize），非本机 pip。
+详见 src/quant_deploy 内脚本与 docs/MYMODEL_REQUIRELIST.txt。
